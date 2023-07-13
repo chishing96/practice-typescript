@@ -1,14 +1,20 @@
 import React, {useState} from 'react'
 import {View, Text, StyleSheet, TextInput, Button, Alert} from 'react-native'
 import ReactNativeBiometrics, {BiometryTypes} from 'react-native-biometrics'
+import {useNavigation} from '@react-navigation/native'
+import {NativeStackNavigationProp} from '@react-navigation/native-stack'
+import {RootStackParamList} from '../navigation/RootNavigator'
 
 const LoginScreen: React.FC = () => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const rnBiometrics = new ReactNativeBiometrics()
 
   const handleEmailLogin = async () => {
     try {
+      navigation.navigate('Main')
       console.log('User logged in:')
     } catch (error) {
       // Handle login error
